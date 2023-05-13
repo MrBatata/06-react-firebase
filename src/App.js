@@ -1,14 +1,19 @@
+/** Modules */
 import React, { createContext, useState } from 'react';
+import { Toaster, toast } from 'react-hot-toast';
+/** Functions */
 import { app, messaging } from './firebase';
-import Header from './components/Header';
+import { onMessage } from 'firebase/messaging';
+/** Pages */
 import HomePage from './routes/HomePage';
 import RegisterPage from './routes/RegisterPage';
 import LoginPage from './routes/LoginPage';
-import { Toaster, toast } from 'react-hot-toast';
-import { onMessage } from 'firebase/messaging';
-import Footer from './components/Footer';
 import TaskPage from './routes/TaskPage';
+/** Components */
+import Header from './components/Header';
+import Footer from './components/Footer';
 
+/** Context creation */
 export const RouteContext = createContext(null);
 export const ThemeContext = createContext(null);
 export const UserContext = createContext(null);
@@ -30,9 +35,7 @@ onMessage(messaging, (payload) => {
   });
 })
 
-/**
- * App - React functional component
- */
+/** App - React functional component */
 function App() {
   const [user, setUser] = useState(null);
   // TODO: routing with router-dom instead.
@@ -40,11 +43,10 @@ function App() {
   // TODO: code and styles for theme change dark/ligh
   const [theme, setTheme] = useState('dark');
 
-  /**
-   * Style for all Routes titles
-   */
+  /** Style for all Routes titles */
   const titleStyle = 'text-lg font-semibold';
 
+  /** DOM */
   return (
     <>
       <UserContext.Provider value={[user, setUser]}>
@@ -54,6 +56,11 @@ function App() {
 
             <div className='min-h-screen h-fit w-screen m-0 p-0 bg-gray-200'>
               <Header />
+              
+
+
+
+{/* 
               <main className='py-14'>
                 {route === 'home'
                   ?
@@ -76,8 +83,8 @@ function App() {
                   :
                   null
                 }
-              </main>
-              {/* TODO: develop Footer style as header */}
+              </main> */}
+
               <Footer />
             </div>
 
