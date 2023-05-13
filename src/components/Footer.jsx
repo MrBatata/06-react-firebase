@@ -18,31 +18,35 @@ const Footer = () => {
   const handleRouteTasks = () => {
     setRoute('tasklist');
   };
-  
+
   const handleRouteProfile = () => {
     setRoute('profile');
   };
 
   return (
-    <footer className='fixed bottom-2 h-20 w-full p-0 shadow-lg bg-sky-400 rounded-2xl border-t-2'>
-      <div className='grid grid-cols-4 m-0 p-0 gap-0'>
-        <div className='flex h-20 items-center justify-center border-x-2 cursor-pointer hover:bg-sky-700 hover:shadow-md hover:shadow-gray-500 transition'
-          onClick={handleRouteHome}>
-          <AiFillHome className='text-5xl text-white'></AiFillHome>
-        </div>
-        <div className='flex h-20 items-center justify-center border-x-2 cursor-pointer hover:bg-sky-700 hover:shadow-gray-500 transition'
-        onClick={handleRouteTasks}>
-          <FaTasks className='text-5xl text-white'></FaTasks>
-        </div>
-        <div className='flex h-20 items-center justify-center border-x-2 cursor-pointer hover:bg-sky-700 hover:shadow-md hover:shadow-gray-500 transition'
-        onClick={handleRouteProfile}>
-          <BsFillPersonFill className='text-5xl text-white'></BsFillPersonFill>
-        </div>
-        <div className='flex h-20 items-center justify-center border-x-2 cursor-pointer hover:bg-sky-700 hover:shadow-md hover:shadow-gray-500 transition'
-        onClick={handleRouteSettings}>
-          <AiFillSetting className='text-5xl text-white'></AiFillSetting>
-        </div>
+    <footer className='fixed bottom-0 w-full p-0 flex gap-2 justify-end px-4 bg-transparent z-20 overflow-hidden truncate'>
+
+
+      <div className='flex items-center justify-center p-1 bg-red-700 h-fit w-fit rounded-full cursor-pointer shadow-xl shadow-black hover:bg-sky-700 hover:shadow-md hover:shadow-gray-500 transition'
+        onClick={handleRouteHome}>
+        <AiFillHome className='text-3xl text-white m-1 sha'></AiFillHome>
       </div>
+
+      <div className='flex items-center justify-center p-1 bg-red-700 h-fit w-fit rounded-full cursor-pointer shadow-xl shadow-black hover:bg-sky-700 hover:shadow-md hover:shadow-gray-500 transition'
+        onClick={handleRouteTasks}>
+        <FaTasks className='text-3xl text-white m-1'></FaTasks>
+      </div>
+
+      <div className='flex items-center justify-center p-1 bg-red-700 h-fit w-fit rounded-full cursor-pointer shadow-xl shadow-black hover:bg-sky-700 hover:shadow-md hover:shadow-gray-500 transition'
+        onClick={handleRouteProfile}>
+        <BsFillPersonFill className='text-3xl text-white m-1'></BsFillPersonFill>
+      </div>
+
+      <div className='flex items-center justify-center p-1 bg-red-700 h-fit w-fit rounded-full cursor-pointer shadow-xl shadow-black hover:bg-sky-700 hover:shadow-md hover:shadow-gray-500 transition'
+        onClick={handleRouteSettings}>
+        <AiFillSetting className='text-3xl text-white m-1'></AiFillSetting>
+      </div>
+
     </footer>
   );
 };

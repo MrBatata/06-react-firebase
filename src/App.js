@@ -1,9 +1,9 @@
 import React, { createContext, useState } from 'react';
 import { app, messaging } from './firebase';
 import Header from './components/Header';
-import Home from './routes/Home';
-import Register from './routes/Register';
-import Login from './routes/Login';
+import HomePage from './routes/HomePage';
+import RegisterPage from './routes/RegisterPage';
+import LoginPage from './routes/LoginPage';
 import { Toaster, toast } from 'react-hot-toast';
 import { onMessage } from 'firebase/messaging';
 import Footer from './components/Footer';
@@ -57,17 +57,17 @@ function App() {
               <main className='py-14'>
                 {route === 'home'
                   ?
-                  <Home><h1 className={titleStyle}>Bienvenid@s al Mr Batata's world</h1></Home>
+                  <HomePage><h1 className={titleStyle}>Bienvenid@s al Mr Batata's world</h1></HomePage>
                   : null
                 }
                 {route === 'login'
                   ?
-                  <Login><h1 className={titleStyle}>Ingrese @ Mr Batata</h1></Login>
+                  <LoginPage><h1 className={titleStyle}>Ingrese @ Mr Batata</h1></LoginPage>
                   : null
                 }
                 {route === 'register'
                   ?
-                  <Register><h1 className={titleStyle}>Register</h1></Register>
+                  <RegisterPage><h1 className={titleStyle}>Register</h1></RegisterPage>
                   : null
                 }
                 {(route === 'tasklist')
@@ -78,7 +78,7 @@ function App() {
                 }
               </main>
               {/* TODO: develop Footer style as header */}
-              {/* <Footer /> */}
+              <Footer />
             </div>
 
           </ThemeContext.Provider>

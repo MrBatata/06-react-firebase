@@ -13,7 +13,7 @@ const auth = getAuth();
 /**
  * Login Page - React functional Component
  */
-const Login = ({ children }) => {
+const LoginPage = ({ children }) => {
   const [user, setUser] = useContext(UserContext);
   const [route, setRoute] = useContext(RouteContext);
   const [email, setEmail] = useState("");
@@ -115,21 +115,23 @@ const Login = ({ children }) => {
           Acredítese con Google o cree una nueva cuenta...
         </span>
       </div>
+
       <div className='m-1 p-3 col-span-3 rounded-lg bg-white shadow-lg flex flex-col gap-3 sm:col-span-2'>
         {children}
         <span>
           Acredítese con Google o cree una nueva cuenta...
         </span>
       </div>
+
       <form onSubmit={handleEmailLogin}
         className="m-1 p-3 col-span-3 rounded-lg bg-white shadow-lg flex flex-col gap-3">
-        <input className="border rounded-lg py-2 px-4  border-gray-300 shadow-xl  w-full"
+        <input className="border rounded-lg py-2 px-4 border-gray-300 shadow-xl w-full"
           type="email"
           value={email}
-          placeholder="Ingrese su correo"
+          placeholder="Ingrese su correo electrónico"
           onChange={e => setEmail(e.target.value)} />
         <div className='relative'>
-          <input className="border rounded-lg py-2 px-4  border-gray-300 shadow-xl w-full"
+          <input className="border rounded-lg py-2 px-4 border-gray-300 shadow-xl w-full"
             type={showpass ? 'text' : 'password'}
             value={password}
             placeholder="Ingrese su contraseña"
@@ -149,20 +151,22 @@ const Login = ({ children }) => {
           </button>
         </div>
       </form>
+
       <div className='m-1 p-3 col-span-3 rounded-lg bg-white shadow-lg flex gap-3'>
         <div className='flex gap-6 justify-between items-center w-full'>
           <span>
             Si no posee cuenta ...
           </span>
           <button
-            className={`${buttonStyleRed} text-xl px-6 py-2 w-full bg-green-900 hover:bg-green-700`}
+            className={`${buttonStyleRed} text-xl px-6 py-2 w-full bg-slate-800 hover:bg-slate-600`}
             onClick={handleSetRegister}
           >Registrarse
           </button>
         </div>
       </div>
+
     </div>
   );
 };
 
-export default Login;
+export default LoginPage;

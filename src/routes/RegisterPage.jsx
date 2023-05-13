@@ -3,6 +3,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { buttonStyleRed } from '../styles/ButtonsTailwind';
 import { RouteContext } from "../App";
 import { toast } from "react-hot-toast";
+import { GiFireRing } from "react-icons/gi";
 
 // Firebase Auth
 const auth = getAuth();
@@ -10,7 +11,7 @@ const auth = getAuth();
 /**
  * Register Page - React functional component
  */
-const Register = ({ children }) => {
+const RegisterPage = ({ children }) => {
 
   const [route, setRoute] = useContext(RouteContext);
   const [email, setEmail] = useState("");
@@ -59,41 +60,65 @@ const Register = ({ children }) => {
    * DOM
    */
   return (
-    <div className="flex flex-col w-144 h-fit justify-start items-center gap-4 p-14 py-16 rounded-4xl shadow-2xl mt-20">
-      {children}
-      <span>¡Regístrate para obtener acceso al universo Batata!</span>
+    <div className="grid grid-cols-3 gap-1 mx-3">
 
-      <form onSubmit={handleCreateUser} className="flex flex-col h-fit justify-start items-center gap-5 p-10 w-full">
-        <input className="border rounded-lg py-2 px-4 text-lg border-b-gray-400 outline-none shadow-xl shadow-gray-300 w-full"
+      <div className='m-1 p-6 col-start-2 col-span-1 rounded-lg bg-white shadow-lg flex flex-col gap-3'>
+      <GiFireRing className='text-3xl text-white bg-red-700 rounded-md hover:bg-red-600 hover:shadow-md hover:shadow-gray-500 transition h-full w-full' />
+      </div>
+
+      <div className='m-1 p-3 col-start-3 col-span-1 rounded-lg bg-white shadow-lg flex flex-col gap-3'>
+        {children}
+        <span>¡Regístrate para obtener acceso al universo Batata!</span>
+      </div>
+
+      <form onSubmit={handleCreateUser} className="m-1 p-3 col-span-3 rounded-lg bg-white shadow-lg flex flex-col gap-3">
+        <input className="border rounded-lg py-2 px-4 border-gray-300 shadow-xl w-full"
           type="email"
           value={email}
-          placeholder="ejemplo@correo.com"
+          placeholder="Ingrese su correo electrónico"
           onChange={e => setEmail(e.target.value)} />
-        <input className="border rounded-lg py-2 px-4 text-lg border-b-gray-400 outline-none shadow-xl shadow-gray-300 w-full"
+        <input className="border rounded-lg py-2 px-4 border-gray-300 shadow-xl w-full"
           type="password"
           value={password}
-          placeholder="contraseña"
+          placeholder="Ingrese su contraseña"
           onChange={e => setPassword(e.target.value)} />
-        <button className={`${buttonStyleRed} text-xl m-3 px-6 py-2 w-full`}>
+        <button className={`${buttonStyleRed} text-xl px-6 py-2 w-full bg-slate-800 hover:bg-slate-600`}
+        >
           Registarte
         </button>
       </form>
-      <p>test</p>
-      <p>test</p>
-      <p>test</p>
-      <p>test</p>
-      <p>test</p>
-      <p>test</p>
-      <p>test</p>
-      <p>test</p>
-      <p>test</p>
-      <p>test</p>
-      <p>test</p>
-      <p>test</p>
-      <p>test</p>
-      <p>test</p>
+
+      <div className="m-1 p-3 col-start-2 col-span-1 rounded-lg bg-white shadow-lg flex flex-col gap-3">
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+      </div>
+
     </div>
   );
 };
 
-export default Register;
+export default RegisterPage;

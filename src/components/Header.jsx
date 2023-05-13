@@ -34,11 +34,11 @@ const Header = () => {
   }
 
   return (
-    <header className='fixed top-0 h-12 w-full shadow-lg flex gap-2 justify-between px-4 bg-white rounded-2xl z-20 overflow-hidden truncate '>
+    <header className='fixed top-0 h-12 w-full shadow-lg flex gap-2 justify-between px-4 bg-white rounded-2xl z-20 overflow-hidden truncate'>
 
-      <div className='flex items-center gap-2 cursor-pointer' onClick={handleSetHome}>
-        <GiFireRing className='text-3xl text-white bg-red-700 rounded-md' />
-        <span className='text-3xl text-red-700 font-bold invisible absolute sm:visible sm:relative'>mr-batata</span>
+      <div className='flex items-center gap-2 cursor-pointer ' onClick={handleSetHome}>
+        <GiFireRing className='text-3xl text-white bg-red-700 rounded-md hover:bg-red-600 hover:shadow-md hover:shadow-gray-500 transition' />
+        <span className='text-3xl text-red-700 font-bold invisible absolute sm:visible sm:relative hover:text-red-600 hover:shadow-gray-500 transition'>mr-batata</span>
       </div>
       {user === null
         ?
