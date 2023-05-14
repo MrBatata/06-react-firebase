@@ -1,6 +1,7 @@
 /** Modules */
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useState } from 'react';
 import { Toaster, toast } from 'react-hot-toast';
+import { BrowserRouter as Router, Route, Routes, Outlet } from 'react-router-dom';
 
 /** Functions */
 import { app, messaging } from './firebase';
@@ -36,7 +37,7 @@ onMessage(messaging, (payload) => {
       </div>
     )
   });
-})
+});
 
 /** App - React functional component */
 function App() {
@@ -49,13 +50,6 @@ function App() {
   /** Style for all Routes titles */
   const titleStyle = 'text-lg font-semibold';
 
-  useEffect(() => {
-    const userLocalStorage = localStorage.getItem('user');
-    userLocalStorage ? setUser(JSON.parse(userLocalStorage)) : localStorage.clear()
-  }, [])
-
-
-
   /** DOM */
   return (
     <>
@@ -64,9 +58,27 @@ function App() {
           <ThemeContext.Provider value={[theme, setTheme]}>
             <Toaster />
 
-            <div className='min-h-screen h-fit w-screen m-0 p-0 bg-gray-200'>
-              <Header />
+            <Router>
+              <Routes>
+                <Route
+                  element={
+                    <div className='min-h-screen h-fit w-screen m-0 p-0 bg-gray-200'>
+                      <Header />
+                      <Outlet />
+                      <Footer />
+                    </div>
+                  }
+                >
+                  <Route path='/' element={<HomePage />}></Route>
+                  <Route path='/login' element={<LoginPage />}></Route>
+                  <Route path="/register" element={<RegisterPage />}></Route>
+                  <Route path="/tasks" element={<TaskPage />}></Route>
 
+                </Route>
+              </Routes>
+            </Router>
+
+            {/* 
               <main className='py-14'>
                 {route === 'home'
                   ?
@@ -83,22 +95,19 @@ function App() {
                   <RegisterPage><h1 className={titleStyle}>Register</h1></RegisterPage>
                   : null
                 }
-                {(route === 'tasklist' & user !== null)
+                {(route === 'tasklist')
                   ?
                   <TaskPage><h1 className={titleStyle}>Gestión de tareas</h1></TaskPage>
                   :
-                  <HomePage><h1 className={titleStyle}>Bienvenid@s al Mr Batata's world</h1></HomePage>
+                  null
                 }
-              </main>
-
-              <Footer />
-            </div>
+              </main> */}
 
           </ThemeContext.Provider>
         </RouteContext.Provider>
       </UserContext.Provider>
     </>
   );
-}
+};
 
 export default App;

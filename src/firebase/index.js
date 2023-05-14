@@ -1,10 +1,36 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
+import { initializeApp } from 'firebase/app';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-import { getMessaging, getToken } from "firebase/messaging";
+import { getMessaging, getToken } from 'firebase/messaging';
 // https://firebase.google.com/docs/firestore/quickstart?authuser=0&hl=es
-import { getFirestore } from "firebase/firestore";
+import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore';
+
+// Your web app's Firebase configuration
+// See: https://support.google.com/firebase/answer/7015592
+const firebaseConfig = {
+  apiKey: "AIzaSyDdTFc5fQGXMEUvmzfu3WvCEoTDSDyV9Lg",
+  authDomain: "react-firebase-f3ec8.firebaseapp.com",
+  // authDomain: "localhost", // Use localhost for the Firebase Authentication emulator
+  projectId: "react-firebase-f3ec8",
+  storageBucket: "react-firebase-f3ec8.appspot.com",
+  messagingSenderId: "825973019058",
+  appId: "1:825973019058:web:dcd3b37b0abf5ba50454ab",
+  measurementId: "G-810SGT521E",
+
+  // Add the following to use the Firebase Firestore emulator
+  // TODO: comment if not using emulator
+  databaseURL: "http://localhost:8080", // Use the Firestore emulator URL
+  emulatorHost: "localhost",
+  emulatorPort: 8080,
+  // Add the following to use the Firebase Authentication emulator
+  // apiKey: "my-api-key",
+  // authDomain: "localhost",
+  // projectId: "my-project",
+};
 
 /**
  * Firebase Cloud Messaging -> https://firebase.google.com/docs/cloud-messaging/js/client?hl=es-419
@@ -15,20 +41,10 @@ import { getFirestore } from "firebase/firestore";
  */
 const vapidKey = "BPK9HnuF094NoINtjovWRabbaA4HP5kI6znxgROqk3LOMJzRP4trDmmfYYYdkE4RRM2EE1KlGtsDQhIQRWVjvKA";
 
-// Your web app's Firebase configuration
-// See: https://support.google.com/firebase/answer/7015592
-const firebaseConfig = {
-  apiKey: "AIzaSyDdTFc5fQGXMEUvmzfu3WvCEoTDSDyV9Lg",
-  authDomain: "react-firebase-f3ec8.firebaseapp.com",
-  projectId: "react-firebase-f3ec8",
-  storageBucket: "react-firebase-f3ec8.appspot.com",
-  messagingSenderId: "825973019058",
-  appId: "1:825973019058:web:dcd3b37b0abf5ba50454ab"
-};
-
 /**
  * Firebase Initialize 
  */
+// process.env.FIRESTORE_EMULATOR_HOST = 'localhost:8080'; // Just for Emulator, always before initializeApp
 export const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase Cloud Messaging and get a reference to the service
@@ -72,3 +88,5 @@ const sendTokenToServer = token => {
  * Cloud Firestore - data base - Initialize  and get a reference to the service
  */
 export const db = getFirestore(app);
+/** For Firebase Emulator */
+connectFirestoreEmulator(db, 'localhost', 8080);

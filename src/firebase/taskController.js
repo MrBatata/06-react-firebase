@@ -9,6 +9,7 @@ export const addNewTask = async task => {
 }
 
 export const getTasks = async () => {
+    console.log('Ejecutando getDocs(db, "tasks")');
     const querySnapshot = await getDocs(collection(db, 'tasks'));
     // console.log(querySnapshot);
     // querySnapshot.forEach(doc => {
@@ -28,8 +29,8 @@ export const updateTask = async (task) => {
         title: task.title,
         description: task.description
     })
-}
+};
 
 export const deleteTask = async (id) => {
     await deleteDoc(doc(db, 'tasks', id));
-}
+};

@@ -1,15 +1,30 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { TasksContext } from '../routes/TaskPage';
 import { BsFillPencilFill } from 'react-icons/bs';
 import { AiFillDelete } from 'react-icons/ai';
+import { deleteTask } from '../firebase/taskController';
 
 const TaskList = () => {
   const tasksContext = useContext(TasksContext);
 
-  // Lifecycle to automatically `initializeTasks` -> needs to be on child component `TaskList`
-  useEffect(() => {
+  /** 
+   * Sets `newTask` to the one we want to modify.
+   * We can now use this object to request the server the modification,
+   * in `TaskPage`.
+   */
+  const editTask = (taskId) => {
+    tasksContext.setMode('update');
+    const taskToEdit = tasksContext.tasks.find(t => t.id === taskId);
+    tasksContext.setNewTask({ ...taskToEdit }); // destructure? {...taskToEdit}
+  };
+
+  /**
+   * Removes an existing task ("document") in the db (within `tasks` "collection") 
+   */
+  const handleDeleteTask = async (taskId) => {
+    await deleteTask(taskId);
     tasksContext.initializeTasks();
-  }, [tasksContext]);
+  };
 
   /**
    * DOM
@@ -31,16 +46,22 @@ const TaskList = () => {
               <td className="border px-4 py-2">{task.title}</td>
               <td className="border px-4 py-2">{task.description}</td>
               <td className="border px-4 py-2 text-center">
-                <div className="flex items-center justify-center">
-                  <BsFillPencilFill className="text-gray-600 hover:text-gray-800 cursor-pointer"
-                  />
+                <div className="flex items-center justify-center"
+                  onClick={() => editTask(task.id)}
+                >
+                  <BsFillPencilFill className="text-gray-600 hover:text-gray-800 cursor-pointer" />
                 </div>
               </td>
               <td className="border px-4 py-2 text-center">
-                <div className="flex items-center justify-center">
-                  <AiFillDelete className="text-gray-600 hover:text-gray-800 cursor-pointer"
-                  />
-                </div>              </td>
+                <div className="flex items-center justify-center"
+                  onClick={() =>
+                    window.confirm("¿Seguro que quieres eliminar esta tarea?") &&
+                    handleDeleteTask(task.id)
+                  }
+                >
+                  <AiFillDelete className="text-gray-600 hover:text-gray-800 cursor-pointer" />
+                </div>
+              </td>
             </tr>
           ))}
         </tbody>

@@ -34,9 +34,19 @@ const LoginPage = ({ children }) => {
         const user = result.user;
         // IdP data available using getAdditionalUserInfo(result)
         // ..
-        setUser(user)
-        console.log(token);
-        console.log(user);
+        setUser(user);
+        // console.log(token);
+        // console.log(user);
+        // https://react-hot-toast.com/
+        toast((t) => {
+          t.duration = 2000;
+          return (
+            <div className="flex flex-col items-center w-48 gap-2">
+              Ingreso exitoso: <b>{user.email}</b>
+            </div>
+          )
+        });
+        setTimeout(() => { setRoute('home'); }, 1000);
       }).catch((error) => {
         // Handle Errors here.
         const errorCode = error.code;
@@ -59,7 +69,11 @@ const LoginPage = ({ children }) => {
         // Signed in
         const user = userCredential.user;
         // ...
-        setUser(user)
+        console.log(user.accessToken);
+        const newUser = {user: user.email, token: user.accessToken};
+        localStorage.setItem('user', JSON.stringify(newUser));
+        setUser(newUser);
+        
         // https://react-hot-toast.com/
         toast((t) => {
           t.duration = 2000;
@@ -74,7 +88,8 @@ const LoginPage = ({ children }) => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-      });
+      })
+      .finally(console.log('Lectura/escritura de usuario'))
   };
 
   /**
