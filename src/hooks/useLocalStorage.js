@@ -1,5 +1,7 @@
+/** Modules */
 import { useState, useEffect } from 'react';
 
+/** Hook for LocalStorage management */
 const useLocalStorage = (key, defaultValue = null) => {
     const [value, setValue] = useState(() => {
         try {

@@ -1,9 +1,10 @@
-// En este fichero crearemos toda la lógica de base de datos para las tasks
 import { db } from "./index";
 import { doc, collection, addDoc, setDoc, getDocs, deleteDoc } from "firebase/firestore";
+// En este fichero crearemos toda la lógica de base de datos para las tasks
 
-// CRUD - Create, Read, Update, Delete
-
+/** CRUD - Create, Read, Update, Delete
+ * All functions/logic for data base actions
+ */
 export const addNewTask = async task => {
     await addDoc(collection(db, 'tasks'), task);
 }

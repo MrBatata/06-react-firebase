@@ -1,28 +1,23 @@
 /** Modules */
 import React, { createContext, useEffect, useState } from 'react';
 import { Toaster, toast } from 'react-hot-toast';
-
 /** Functions */
 import { app, messaging } from './firebase';
 import { onMessage } from 'firebase/messaging';
-
 /** Pages */
 import HomePage from './routes/HomePage';
 import RegisterPage from './routes/RegisterPage';
 import LoginPage from './routes/LoginPage';
 import TaskPage from './routes/TaskPage';
-
 /** Components */
 import Header from './components/Header';
 import Footer from './components/Footer';
-
 /** Context creation */
 export const RouteContext = createContext(null);
 export const ThemeContext = createContext(null);
 export const UserContext = createContext(null);
 
-/**
- * Firebase Cloud Notification
+/** Firebase Cloud Notification
  * Config to show server notification as Toaster
  */
 onMessage(messaging, (payload) => {
@@ -40,6 +35,7 @@ onMessage(messaging, (payload) => {
 
 /** App - React functional component */
 function App() {
+  /** State management */
   const [user, setUser] = useState(null);
   // TODO: routing with router-dom instead.
   const [route, setRoute] = useState('home');
@@ -48,6 +44,7 @@ function App() {
   /** Style for all Routes titles */
   const titleStyle = 'text-lg font-semibold';
 
+  /** Component lifecyle control */
   useEffect(() => {
     const userLocalStorage = localStorage.getItem('user');
     userLocalStorage ? setUser(JSON.parse(userLocalStorage)) : localStorage.clear()

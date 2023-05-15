@@ -1,36 +1,48 @@
+/** Modules */
 import React, { useContext, useState } from 'react';
-import { RouteContext, ThemeContext } from '../App';
+/** Components */
 import { AiFillHome, AiFillSetting } from 'react-icons/ai';
 import { MdDarkMode, MdLightMode } from 'react-icons/md';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { FaTasks } from 'react-icons/fa';
+/** Styles */
 import { buttonStyleRed } from '../styles/ButtonsTailwind';
+/** Context use */
+import { RouteContext, ThemeContext } from '../App';
 
+/** React functional component */
 const Footer = () => {
+  /** State management */
   const [route, setRoute] = useContext(RouteContext);
   const [settingsDialog, setSettingsDialog] = useState(false);
   const [theme, setTheme] = useContext(ThemeContext);
 
+  /** Link HomePage */
   const handleRouteHome = () => {
     setRoute('home');
   };
 
+  /** Link PaskPage */
   const handleRouteTasks = () => {
     setRoute('tasklist');
   };
 
+  /** Link ProfilePage */
   const handleRouteProfile = () => {
     setRoute('profile');
   };
 
+  /** Settings Show */
   const handleRouteSettings = () => {
     setSettingsDialog(!settingsDialog);
   };
 
+  /** Dark / light theme mode */
   const handleSetTheme = () => {
     theme === 'dark' ? setTheme('light') : setTheme('dark');
   }
 
+  /** DOM */
   return (
     <nav className='fixed bottom-0 w-full h-fit p-0 px-4 bg-transparent flex gap-2 justify-end items-end'>
 

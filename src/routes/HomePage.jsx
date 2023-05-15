@@ -1,11 +1,16 @@
-import React from 'react'
-import { buttonStyleRed } from '../styles/ButtonsTailwind';
+/** Modules */
+import React from 'react';
+/** Components */
 import ImageSlider from '../components/ImageSlider';
+/** Styles */
+import { buttonStyleRed } from '../styles/ButtonsTailwind';
 
-
+/** React functional component */
 const Home = ({ children }) => {
+
+  /** DOM */
   return (
-    <div className="grid grid-cols-3 gap-1 mx-3">
+    <div className='grid grid-cols-3 gap-1 mx-3'>
 
       <div className='m-1 p-3 col-span-3 rounded-lg bg-white dark:bg-gray-900 dark:text-white shadow-lg flex flex-col gap-3 sm:col-span-2'>
         {/* Title from father */}

@@ -1,14 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react';
+/** Modules */
+import React, { useContext } from 'react';
+/** Functions */
+import { deleteTask } from '../firebase/taskController';
+/** Components */
 import { TasksContext } from '../routes/TaskPage';
 import { BsFillPencilFill } from 'react-icons/bs';
 import { AiFillDelete } from 'react-icons/ai';
-import { deleteTask } from '../firebase/taskController';
 
+/** React functional component */
 const TaskList = () => {
   const tasksContext = useContext(TasksContext);
 
-  /** 
-   * Sets `newTask` to the one we want to modify.
+  /** Sets `newTask` to the one we want to modify.
    * We can now use this object to request the server the modification,
    * in `TaskPage`.
    */
@@ -18,17 +21,14 @@ const TaskList = () => {
     tasksContext.setNewTask({ ...taskToEdit }); // destructure? {...taskToEdit}
   };
 
-  /**
-   * Removes an existing task ("document") in the db (within `tasks` "collection") 
-   */
+  /** Removes an existing task ("document") in the db (within `tasks` "collection") */
   const handleDeleteTask = async (taskId) => {
+    console.log('Initializing... from DeleteTask button');
     await deleteTask(taskId);
     tasksContext.initializeTasks();
   };
 
-  /**
-   * DOM
-   */
+  /** DOM */
   return (
     <div className='w-full'>
       <table className="table-auto border border-collapse w-full">

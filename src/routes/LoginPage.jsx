@@ -1,29 +1,32 @@
+/** Modules */
 import React, { useContext, useState } from 'react';
+/** Functions */
+import { GoogleAuthProvider, getAuth, signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth';
+/** Components */
 import { FcGoogle } from 'react-icons/fc';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
-import { GoogleAuthProvider, getAuth, signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
-import { buttonStyleRed } from '../styles/ButtonsTailwind';
-import { RouteContext, UserContext } from '../App';
 import { toast } from 'react-hot-toast';
+/** Styles */
+import { buttonStyleRed } from '../styles/ButtonsTailwind';
+/** Context use */
+import { RouteContext, UserContext } from '../App';
 
-// Firebase Auth
+/** Firebase Auth: https://firebase.google.com/docs/auth/web/start?hl=es-419 */
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
 
-/**
- * Login Page - React functional Component
- */
+/** React functional component */
 const LoginPage = ({ children }) => {
+  /** State management */
   const [user, setUser] = useContext(UserContext);
   const [route, setRoute] = useContext(RouteContext);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showpass, setShowpass] = useState(false);
 
-  /**
-   * Firebase auth code with **Google**
+  /** Firebase auth code with --Google-- 
+   * Arroy function to prevent execution as the `Login` component is printed in DOM
    */
-  // Arroy function to prevent execution as the `Login` component is printed in DOM
   const handleGoogleLogin = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
@@ -41,7 +44,7 @@ const LoginPage = ({ children }) => {
         toast((t) => {
           t.duration = 2000;
           return (
-            <div className="flex flex-col items-center w-48 gap-2">
+            <div className='flex flex-col items-center w-48 gap-2'>
               Ingreso exitoso: <b>{user.email}</b>
             </div>
           )
@@ -59,9 +62,7 @@ const LoginPage = ({ children }) => {
       });
   };
 
-  /**
-   * Firebase auth code with **Email and Password**
-   */
+  /** Firebase auth code with --Email and Password-- */
   const handleEmailLogin = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
@@ -70,15 +71,15 @@ const LoginPage = ({ children }) => {
         const user = userCredential.user;
         // ...
         console.log(user.accessToken);
-        const newUser = {user: user.email, token: user.accessToken};
+        const newUser = { user: user.email, token: user.accessToken };
         localStorage.setItem('user', JSON.stringify(newUser));
         setUser(newUser);
-        
+
         // https://react-hot-toast.com/
         toast((t) => {
           t.duration = 2000;
           return (
-            <div className="flex flex-col items-center w-48 gap-2">
+            <div className='flex flex-col items-center w-48 gap-2'>
               Ingreso exitoso: <b>{user.email}</b>
             </div>
           )
@@ -92,39 +93,31 @@ const LoginPage = ({ children }) => {
       .finally(console.log('Lectura/escritura de usuario'))
   };
 
-  /**
-   * Link to Register Page
-   */
+  /** Link to Register Page */
   const handleSetRegister = () => {
     setRoute('register');
   };
 
-  /**
-   * Show Password
-   */
+  /** Show Password eye */
   const handleShowPass = () => {
     setShowpass(!showpass);
-  }
-
+  };
   const ShowPassComp = (
     showpass === false
       ? (<AiFillEye className='text-gray-500 text-2xl absolute top-1/2 -translate-y-1/2 cursor-pointer right-2'
-        onClick={handleShowPass}
-      />)
-      :
-      (<AiFillEyeInvisible className='text-gray-500 text-2xl absolute top-1/2 -translate-y-1/2 cursor-pointer right-2'
-        style={{}}
-        onClick={handleShowPass}
-      />)
-  )
+        onClick={handleShowPass} />
+      )
+      : (<AiFillEyeInvisible className='text-gray-500 text-2xl absolute top-1/2 -translate-y-1/2 cursor-pointer right-2'
+        onClick={handleShowPass} />
+      )
+  );
 
-  /**
-   * DOM
-   */
+  /** DOM */
   return (
-    <div className="grid grid-cols-3 gap-1 mx-3">
-      {/* Title from father */}
+    <div className='grid grid-cols-3 gap-1 mx-3'>
+
       <div className='m-1 p-3 col-span-3 rounded-lg bg-white dark:bg-gray-900 dark:text-white shadow-lg flex flex-col gap-3 sm:col-span-1'>
+        {/* Title from father */}
         {children}
         <span>
           Acredítese con Google o cree una nueva cuenta...
@@ -139,17 +132,17 @@ const LoginPage = ({ children }) => {
       </div>
 
       <form onSubmit={handleEmailLogin}
-        className="m-1 p-3 col-span-3 rounded-lg bg-white dark:bg-gray-900 dark:text-white shadow-lg flex flex-col gap-3">
-        <input className="border rounded-lg py-2 px-4 border-gray-300 shadow-xl w-full dark:bg-gray-900 dark:text-white "
-          type="email"
+        className='m-1 p-3 col-span-3 rounded-lg bg-white dark:bg-gray-900 dark:text-white shadow-lg flex flex-col gap-3'>
+        <input className='border rounded-lg py-2 px-4 border-gray-300 shadow-xl w-full dark:bg-gray-900 dark:text-white '
+          type='email'
           value={email}
-          placeholder="Ingrese su correo electrónico"
+          placeholder='Ingrese su correo electrónico'
           onChange={e => setEmail(e.target.value)} />
         <div className='relative'>
-          <input className="border rounded-lg py-2 px-4 border-gray-300 shadow-xl w-full dark:bg-gray-900 dark:text-white "
+          <input className='border rounded-lg py-2 px-4 border-gray-300 shadow-xl w-full dark:bg-gray-900 dark:text-white '
             type={showpass ? 'text' : 'password'}
             value={password}
-            placeholder="Ingrese su contraseña"
+            placeholder='Ingrese su contraseña'
             onChange={e => setPassword(e.target.value)}
           />
           {ShowPassComp}
