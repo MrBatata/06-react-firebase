@@ -72,23 +72,23 @@ const TaskPage = ({ children }) => {
     <TasksContext.Provider value={{ tasks, initializeTasks, mode, setMode, newTask, setNewTask }}>
       <div className="grid grid-cols-3 gap-1 mx-3">
         {/* Title from father */}
-        <div className='m-1 p-3 col-span-1 rounded-lg bg-white shadow-lg flex flex-col gap-3'>
+        <div className='m-1 p-3 col-span-1 rounded-lg bg-white dark:bg-gray-900 dark:text-white shadow-lg flex flex-col gap-3'>
           {children}
           <div>
             <strong>Cree sus tareas:</strong> Genere su nueva tarea para visualizarla en la tabla de tareas y así poder gestionarla...
           </div>
         </div>
 
-        <div className='m-1 p-3 col-span-2 rounded-lg bg-white shadow-lg flex flex-col gap-3'>
+        <div className='m-1 p-3 col-span-2 rounded-lg bg-white dark:bg-gray-900 dark:text-white shadow-lg flex flex-col gap-3'>
           <form className="flex flex-col justify-center items-center gap-3"
             onSubmit={mode === 'add' ? handleCreateTask : handleUpdateTask}
           >
-            <input type='text' className="border rounded-lg py-2 px-4 text-gray-600 text-lg border-b-gray-400 outline-none shadow-xl shadow-gray-300 w-full"
+            <input type='text' className="border rounded-lg py-2 px-4 text-gray-600 dark:bg-gray-900 dark:text-white text-lg border-b-gray-400 outline-none shadow-xl w-full"
               onChange={handleChangeTitle}
               placeholder='Título'
               value={newTask.title}
             ></input>
-            <textarea type='text' className="border rounded-lg py-2 px-4 text-gray-600 text-lg border-b-gray-400 outline-none shadow-xl shadow-gray-300 w-full"
+            <textarea type='text' className="border rounded-lg py-2 px-4 text-gray-600 dark:bg-gray-900 dark:text-white text-lg border-b-gray-400 outline-none shadow-xl w-full"
               onChange={handleChangeDescr}
               placeholder='Descripción'
               value={newTask.description}
@@ -111,7 +111,7 @@ const TaskPage = ({ children }) => {
             Obtener Tareas</button>
         </div>
 
-        <div className="m-1 p-3 col-span-3 rounded-lg bg-white shadow-lg flex flex-col gap-3">
+        <div className="m-1 p-3 col-span-3 rounded-lg bg-white dark:bg-gray-900 dark:text-white shadow-lg flex flex-col gap-3">
           <TaskList></TaskList>
         </div>
 

@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/firestore';
+// import firebase from 'firebase/app'; // Needed?
+// import 'firebase/auth'; // Needed?
+// import 'firebase/firestore'; // Needed?
 import { initializeApp } from 'firebase/app';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -13,20 +13,21 @@ import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore';
 // See: https://support.google.com/firebase/answer/7015592
 const firebaseConfig = {
   apiKey: "AIzaSyDdTFc5fQGXMEUvmzfu3WvCEoTDSDyV9Lg",
-  authDomain: "react-firebase-f3ec8.firebaseapp.com",
-  // authDomain: "localhost", // Use localhost for the Firebase Authentication emulator
+  authDomain: "react-firebase-f3ec8.firebaseapp.com", // ? Use this line for the Firebase Authentication emulator 
+  // authDomain: "localhost", // ? Use this line for the Firebase Authentication emulator
   projectId: "react-firebase-f3ec8",
   storageBucket: "react-firebase-f3ec8.appspot.com",
   messagingSenderId: "825973019058",
   appId: "1:825973019058:web:dcd3b37b0abf5ba50454ab",
   measurementId: "G-810SGT521E",
 
-  // Add the following to use the Firebase Firestore emulator
+
+  // ? Add for Firebase Emulator, comment for server use
   // TODO: comment if not using emulator
   databaseURL: "http://localhost:8080", // Use the Firestore emulator URL
   emulatorHost: "localhost",
   emulatorPort: 8080,
-  // Add the following to use the Firebase Authentication emulator
+  // ? Add the following to use the Firebase Authentication emulator
   // apiKey: "my-api-key",
   // authDomain: "localhost",
   // projectId: "my-project",
@@ -44,7 +45,7 @@ const vapidKey = "BPK9HnuF094NoINtjovWRabbaA4HP5kI6znxgROqk3LOMJzRP4trDmmfYYYdkE
 /**
  * Firebase Initialize 
  */
-// process.env.FIRESTORE_EMULATOR_HOST = 'localhost:8080'; // Just for Emulator, always before initializeApp
+process.env.FIRESTORE_EMULATOR_HOST = 'localhost:8080'; // Just for Emulator, always before initializeApp
 export const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase Cloud Messaging and get a reference to the service
@@ -72,7 +73,7 @@ getToken(messaging, { vapidKey: vapidKey })
   });
 
 // Initial code to store tokens in db
-const sendTokenToServer = token => {
+const sendTokenToServer = (token) => {
   // if already in localStorage, just return
   // if (localStorage.getItem('tokenSentToServer')) {
   //   return localStorage.getItem('tokenSentToServer')
@@ -88,5 +89,5 @@ const sendTokenToServer = token => {
  * Cloud Firestore - data base - Initialize  and get a reference to the service
  */
 export const db = getFirestore(app);
-/** For Firebase Emulator */
-connectFirestoreEmulator(db, 'localhost', 8080);
+// ? Add for Firebase Firestore Emulator 
+connectFirestoreEmulator(db, 'localhost', 8080); // ? Comment for Firebase Firestore Server

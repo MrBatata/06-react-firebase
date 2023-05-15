@@ -62,22 +62,22 @@ const RegisterPage = ({ children }) => {
   return (
     <div className="grid grid-cols-3 gap-1 mx-3">
 
-      <div className='m-1 p-6 col-start-2 col-span-1 rounded-lg bg-white shadow-lg flex flex-col gap-3'>
+      <div className='m-1 p-6 col-start-2 col-span-1 rounded-lg bg-white dark:bg-gray-900 dark:text-white shadow-lg flex flex-col gap-3'>
       <GiFireRing className='text-3xl text-white bg-red-700 rounded-md hover:bg-red-600 hover:shadow-md hover:shadow-gray-500 transition h-full w-full' />
       </div>
 
-      <div className='m-1 p-3 col-start-3 col-span-1 rounded-lg bg-white shadow-lg flex flex-col gap-3'>
+      <div className='m-1 p-3 col-start-3 col-span-1 rounded-lg bg-white dark:bg-gray-900 dark:text-white shadow-lg flex flex-col gap-3'>
         {children}
         <span>¡Regístrate para obtener acceso al universo Batata!</span>
       </div>
 
-      <form onSubmit={handleCreateUser} className="m-1 p-3 col-span-3 rounded-lg bg-white shadow-lg flex flex-col gap-3">
-        <input className="border rounded-lg py-2 px-4 border-gray-300 shadow-xl w-full"
+      <form onSubmit={handleCreateUser} className="m-1 p-3 col-span-3 rounded-lg bg-white dark:bg-gray-900 dark:text-white shadow-lg flex flex-col gap-3">
+        <input className="border rounded-lg py-2 px-4 border-gray-300 dark:bg-gray-900 dark:text-white shadow-xl w-full"
           type="email"
           value={email}
           placeholder="Ingrese su correo electrónico"
           onChange={e => setEmail(e.target.value)} />
-        <input className="border rounded-lg py-2 px-4 border-gray-300 shadow-xl w-full"
+        <input className="border rounded-lg py-2 px-4 border-gray-300 dark:bg-gray-900 dark:text-white shadow-xl w-full"
           type="password"
           value={password}
           placeholder="Ingrese su contraseña"
@@ -88,7 +88,7 @@ const RegisterPage = ({ children }) => {
         </button>
       </form>
 
-      <div className="m-1 p-3 col-start-2 col-span-1 rounded-lg bg-white shadow-lg flex flex-col gap-3">
+      <div className="m-1 p-3 col-start-2 col-span-1 rounded-lg bg-white dark:bg-gray-900 dark:text-white shadow-lg flex flex-col gap-3">
         <p>test</p>
         <p>test</p>
         <p>test</p>

@@ -124,14 +124,14 @@ const LoginPage = ({ children }) => {
   return (
     <div className="grid grid-cols-3 gap-1 mx-3">
       {/* Title from father */}
-      <div className='m-1 p-3 col-span-3 rounded-lg bg-white shadow-lg flex flex-col gap-3 sm:col-span-1'>
+      <div className='m-1 p-3 col-span-3 rounded-lg bg-white dark:bg-gray-900 dark:text-white shadow-lg flex flex-col gap-3 sm:col-span-1'>
         {children}
         <span>
           Acredítese con Google o cree una nueva cuenta...
         </span>
       </div>
 
-      <div className='m-1 p-3 col-span-3 rounded-lg bg-white shadow-lg flex flex-col gap-3 sm:col-span-2'>
+      <div className='m-1 p-3 col-span-3 rounded-lg bg-white dark:bg-gray-900 dark:text-white shadow-lg flex flex-col gap-3 sm:col-span-2'>
         {children}
         <span>
           Acredítese con Google o cree una nueva cuenta...
@@ -139,14 +139,14 @@ const LoginPage = ({ children }) => {
       </div>
 
       <form onSubmit={handleEmailLogin}
-        className="m-1 p-3 col-span-3 rounded-lg bg-white shadow-lg flex flex-col gap-3">
-        <input className="border rounded-lg py-2 px-4 border-gray-300 shadow-xl w-full"
+        className="m-1 p-3 col-span-3 rounded-lg bg-white dark:bg-gray-900 dark:text-white shadow-lg flex flex-col gap-3">
+        <input className="border rounded-lg py-2 px-4 border-gray-300 shadow-xl w-full dark:bg-gray-900 dark:text-white "
           type="email"
           value={email}
           placeholder="Ingrese su correo electrónico"
           onChange={e => setEmail(e.target.value)} />
         <div className='relative'>
-          <input className="border rounded-lg py-2 px-4 border-gray-300 shadow-xl w-full"
+          <input className="border rounded-lg py-2 px-4 border-gray-300 shadow-xl w-full dark:bg-gray-900 dark:text-white "
             type={showpass ? 'text' : 'password'}
             value={password}
             placeholder="Ingrese su contraseña"
@@ -167,7 +167,7 @@ const LoginPage = ({ children }) => {
         </div>
       </form>
 
-      <div className='m-1 p-3 col-span-3 rounded-lg bg-white shadow-lg flex gap-3'>
+      <div className='m-1 p-3 col-span-3 rounded-lg bg-white dark:bg-gray-900 dark:text-white shadow-lg flex gap-3'>
         <div className='flex gap-6 justify-between items-center w-full'>
           <span>
             Si no posee cuenta ...

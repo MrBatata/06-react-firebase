@@ -43,7 +43,6 @@ function App() {
   const [user, setUser] = useState(null);
   // TODO: routing with router-dom instead.
   const [route, setRoute] = useState('home');
-  // TODO: code and styles for theme change dark/ligh
   const [theme, setTheme] = useState('dark');
 
   /** Style for all Routes titles */
@@ -54,46 +53,46 @@ function App() {
     userLocalStorage ? setUser(JSON.parse(userLocalStorage)) : localStorage.clear()
   }, [])
 
-
-
   /** DOM */
   return (
     <>
       <UserContext.Provider value={[user, setUser]}>
         <RouteContext.Provider value={[route, setRoute]}>
           <ThemeContext.Provider value={[theme, setTheme]}>
-            <Toaster />
+            <div className={theme}>
+              <Toaster />
 
-            <div className='min-h-screen h-fit w-screen m-0 p-0 bg-gray-200'>
-              <Header />
+              <div className='min-h-screen h-fit w-screen m-0 p-0 bg-gray-200 dark:bg-gray-950'>
+                <Header />
 
-              <main className='py-14'>
-                {route === 'home'
-                  ?
-                  <HomePage><h1 className={titleStyle}>Bienvenid@s al Mr Batata's world</h1></HomePage>
-                  : null
-                }
-                {route === 'login'
-                  ?
-                  <LoginPage><h1 className={titleStyle}>Ingrese @ Mr Batata</h1></LoginPage>
-                  : null
-                }
-                {route === 'register'
-                  ?
-                  <RegisterPage><h1 className={titleStyle}>Register</h1></RegisterPage>
-                  : null
-                }
-                {(route === 'tasklist' & user !== null)
-                  ?
-                  <TaskPage><h1 className={titleStyle}>Gestión de tareas</h1></TaskPage>
-                  :
-                  <HomePage><h1 className={titleStyle}>Bienvenid@s al Mr Batata's world</h1></HomePage>
-                }
-              </main>
+                <main className='py-14'>
+                  {route === 'home'
+                    ?
+                    <HomePage><h1 className='text-lg font-semibold dark:text-white'>Bienvenid@s al Mr Batata's world</h1></HomePage>
+                    : null
+                  }
+                  {route === 'login'
+                    ?
+                    <LoginPage><h1 className='text-lg font-semibold dark:text-white'>Ingrese @ Mr Batata</h1></LoginPage>
+                    : null
+                  }
+                  {route === 'register'
+                    ?
+                    <RegisterPage><h1 className='text-lg font-semibold dark:text-white'>Register</h1></RegisterPage>
+                    : null
+                  }
+                  {route === 'tasklist' && (
+                    user !== null
+                      ?
+                      <TaskPage><h1 className='text-lg font-semibold dark:text-white'>Gestión de tareas</h1></TaskPage>
+                      :
+                      <HomePage><h1 className='text-lg font-semibold dark:text-white'>Bienvenid@s al Mr Batata's world</h1></HomePage>
+                  )}
+                </main>
 
-              <Footer />
+                <Footer />
+              </div>
             </div>
-
           </ThemeContext.Provider>
         </RouteContext.Provider>
       </UserContext.Provider>
