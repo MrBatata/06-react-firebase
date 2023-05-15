@@ -21,12 +21,11 @@ const firebaseConfig = {
   appId: "1:825973019058:web:dcd3b37b0abf5ba50454ab",
   measurementId: "G-810SGT521E",
 
-
   // ? Add for Firebase Emulator, comment for server use
   // TODO: comment if not using emulator
-  databaseURL: "http://localhost:8080", // Use the Firestore emulator URL
-  emulatorHost: "localhost",
-  emulatorPort: 8080,
+  // databaseURL: "http://localhost:8080", // Use the Firestore emulator URL
+  // emulatorHost: "localhost",
+  // emulatorPort: 8080,
   // ? Add the following to use the Firebase Authentication emulator
   // apiKey: "my-api-key",
   // authDomain: "localhost",
@@ -45,7 +44,7 @@ const vapidKey = "BPK9HnuF094NoINtjovWRabbaA4HP5kI6znxgROqk3LOMJzRP4trDmmfYYYdkE
 /**
  * Firebase Initialize 
  */
-process.env.FIRESTORE_EMULATOR_HOST = 'localhost:8080'; // Just for Emulator, always before initializeApp
+// process.env.FIRESTORE_EMULATOR_HOST = 'localhost:8080'; // ? Just for Emulator, always before initializeApp
 export const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase Cloud Messaging and get a reference to the service
@@ -58,7 +57,7 @@ getToken(messaging, { vapidKey: vapidKey })
     if (currentToken) {
       // Send the token to your server and update the UI if necessary
       // ...
-      // console.log(currentToken);
+      // console.log(currentToken); // ? to use Cloudmessage uncomment line and obtain token
       // token must be stored in server...
       sendTokenToServer(currentToken);
     } else {
@@ -90,4 +89,4 @@ const sendTokenToServer = (token) => {
  */
 export const db = getFirestore(app);
 // ? Add for Firebase Firestore Emulator 
-connectFirestoreEmulator(db, 'localhost', 8080); // ? Comment for Firebase Firestore Server
+// connectFirestoreEmulator(db, 'localhost', 8080); // ? Comment for Firebase Firestore Server

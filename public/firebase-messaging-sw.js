@@ -6,26 +6,18 @@ importScripts('https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging-compa
 // Initialize the Firebase app in the service worker by passing in
 // your app's Firebase config object.
 // https://firebase.google.com/docs/web/setup#config-object
-firebase.initializeApp({
+
+const firebaseConfig = {
   apiKey: "AIzaSyDdTFc5fQGXMEUvmzfu3WvCEoTDSDyV9Lg",
-  authDomain: "react-firebase-f3ec8.firebaseapp.com", // ? Use this line for the Firebase Authentication emulator 
-  // authDomain: "localhost", // ? Use this line for the Firebase Authentication emulator
+  authDomain: "react-firebase-f3ec8.firebaseapp.com",
   projectId: "react-firebase-f3ec8",
   storageBucket: "react-firebase-f3ec8.appspot.com",
   messagingSenderId: "825973019058",
   appId: "1:825973019058:web:dcd3b37b0abf5ba50454ab",
-  measurementId: "G-810SGT521E",
+  measurementId: "G-810SGT521E"
+};
 
-  // ? Add for Firebase Emulator, comment for server use
-  // TODO: comment if not using emulator
-  // databaseURL: "http://localhost:8080", // Use the Firestore emulator URL
-  // emulatorHost: "localhost",
-  // emulatorPort: 8080,
-  // ? Add the following to use the Firebase Authentication emulator
-  // apiKey: "my-api-key",
-  // authDomain: "localhost",
-  // projectId: "my-project",
-});
+firebase.initializeApp(firebaseConfig);
 
 // Retrieve an instance of Firebase Messaging so that it can handle background
 // messages.

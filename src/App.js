@@ -65,7 +65,7 @@ function App() {
                 <main className='py-14'>
                   {route === 'home'
                     ?
-                    <HomePage><h1 className='text-lg font-semibold dark:text-white'>Bienvenid@s al Mr Batata's world</h1></HomePage>
+                    <HomePage><h1 className='text-lg font-semibold dark:text-white'>Bienvenid@s al mundo de Mr Batata</h1></HomePage>
                     : null
                   }
                   {route === 'login'
