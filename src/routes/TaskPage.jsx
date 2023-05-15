@@ -32,7 +32,7 @@ const TaskPage = ({ children }) => {
   const handleCreateTask = async (e) => {
     e.preventDefault();
     console.log('Initializing... from CreateTask button');
-    await addNewTask(newTask);
+    await addNewTask(newTask).catch(e => console.log('Error!'));
     setNewTask({ title: '', description: '' });
     initializeTasks();
   };
