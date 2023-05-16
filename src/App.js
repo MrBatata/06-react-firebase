@@ -12,6 +12,7 @@ import TaskPage from './routes/TaskPage';
 /** Components */
 import Header from './components/Header';
 import Footer from './components/Footer';
+import useLocalStorage from './hooks/useLocalStorage';
 /** Context creation */
 export const RouteContext = createContext(null);
 export const ThemeContext = createContext(null);
@@ -36,19 +37,21 @@ onMessage(messaging, (payload) => {
 /** App - React functional component */
 function App() {
   /** State management */
-  const [user, setUser] = useState(null);
   // TODO: routing with router-dom instead.
   const [route, setRoute] = useState('home');
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useLocalStorage('theme', 'light');
+  /** User in localStorage management */
+  const [user, setUser] = useLocalStorage('user', null);
 
   /** Style for all Routes titles */
   const titleStyle = 'text-lg font-semibold';
 
-  /** Component lifecyle control */
-  useEffect(() => {
-    const userLocalStorage = localStorage.getItem('user');
-    userLocalStorage ? setUser(JSON.parse(userLocalStorage)) : localStorage.clear()
-  }, [])
+  // /** Component lifecyle control */
+  // Reeplaced with useLocalStorage('user')
+  // useEffect(() => {
+  //   const userLocalStorage = localStorage.getItem('user');
+  //   userLocalStorage ? setUser(JSON.parse(userLocalStorage)) : localStorage.clear()
+  // }, [])
 
   /** DOM */
   return (
