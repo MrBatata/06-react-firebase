@@ -12,24 +12,24 @@ import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore';
 // Your web app's Firebase configuration
 // See: https://support.google.com/firebase/answer/7015592
 const firebaseConfig = {
-  apiKey: "AIzaSyDdTFc5fQGXMEUvmzfu3WvCEoTDSDyV9Lg",
-  authDomain: "react-firebase-f3ec8.firebaseapp.com", // ? Use this line for the Firebase Authentication emulator 
-  // authDomain: "localhost", // ? Use this line for the Firebase Authentication emulator
-  projectId: "react-firebase-f3ec8",
-  storageBucket: "react-firebase-f3ec8.appspot.com",
-  messagingSenderId: "825973019058",
-  appId: "1:825973019058:web:dcd3b37b0abf5ba50454ab",
-  measurementId: "G-810SGT521E",
+	apiKey: 'AIzaSyDdTFc5fQGXMEUvmzfu3WvCEoTDSDyV9Lg',
+	authDomain: 'react-firebase-f3ec8.firebaseapp.com', // ? Use this line for the Firebase Authentication emulator 
+	// authDomain: "localhost", // ? Use this line for the Firebase Authentication emulator
+	projectId: 'react-firebase-f3ec8',
+	storageBucket: 'react-firebase-f3ec8.appspot.com',
+	messagingSenderId: '825973019058',
+	appId: '1:825973019058:web:dcd3b37b0abf5ba50454ab',
+	measurementId: 'G-810SGT521E',
 
-  // ? Add for Firebase Emulator, comment for server use
-  // TODO: comment if not using emulator
-  // databaseURL: "http://localhost:8080", // Use the Firestore emulator URL
-  // emulatorHost: "localhost",
-  // emulatorPort: 8080,
-  // ? Add the following to use the Firebase Authentication emulator
-  // apiKey: "my-api-key",
-  // authDomain: "localhost",
-  // projectId: "my-project",
+	// ? Add for Firebase Emulator, comment for server use
+	// TODO: comment if not using emulator
+	// databaseURL: "http://localhost:8080", // Use the Firestore emulator URL
+	// emulatorHost: "localhost",
+	// emulatorPort: 8080,
+	// ? Add the following to use the Firebase Authentication emulator
+	// apiKey: "my-api-key",
+	// authDomain: "localhost",
+	// projectId: "my-project",
 };
 
 /**
@@ -39,7 +39,7 @@ const firebaseConfig = {
  * Third, import `getMessaging`
  * Fourth, initialize FCM (see below `const messaging = ...`)
  */
-const vapidKey = "BPK9HnuF094NoINtjovWRabbaA4HP5kI6znxgROqk3LOMJzRP4trDmmfYYYdkE4RRM2EE1KlGtsDQhIQRWVjvKA";
+const vapidKey = 'BPK9HnuF094NoINtjovWRabbaA4HP5kI6znxgROqk3LOMJzRP4trDmmfYYYdkE4RRM2EE1KlGtsDQhIQRWVjvKA';
 
 /**
  * Firebase Initialize 
@@ -50,38 +50,38 @@ export const app = initializeApp(firebaseConfig);
 // Initialize Firebase Cloud Messaging and get a reference to the service
 export const messaging = getMessaging();
 getToken(messaging, { vapidKey: vapidKey })
-  // `currentToken` is automatically generated for each "client" that allows notifications
-  // for our app.
-  // We should save it on our database
-  .then((currentToken) => {
-    if (currentToken) {
-      // Send the token to your server and update the UI if necessary
-      // ...
-      // console.log(currentToken); // ? to use Cloudmessage uncomment line and obtain token
-      // token must be stored in server...
-      sendTokenToServer(currentToken);
-    } else {
-      // Show permission request UI
-      console.log('No registration token available. Request permission to generate one.');
-      // ...
-    };
-  })
-  .catch((err) => {
-    console.log('An error occurred while retrieving token. ', err);
-    // ...
-  });
+// `currentToken` is automatically generated for each "client" that allows notifications
+// for our app.
+// We should save it on our database
+	.then((currentToken) => {
+		if (currentToken) {
+			// Send the token to your server and update the UI if necessary
+			// ...
+			// console.log(currentToken); // ? to use Cloudmessage uncomment line and obtain token
+			// token must be stored in server...
+			sendTokenToServer(currentToken);
+		} else {
+			// Show permission request UI
+			console.log('No registration token available. Request permission to generate one.');
+			// ...
+		}
+	})
+	.catch((err) => {
+		console.log('An error occurred while retrieving token. ', err);
+		// ...
+	});
 
 // Initial code to store tokens in db
 const sendTokenToServer = (token) => {
-  // if already in localStorage, just return
-  // if (localStorage.getItem('tokenSentToServer')) {
-  //   return localStorage.getItem('tokenSentToServer')
-  // };
-  // Same with less code..
-  if (localStorage.getItem('tokenSentToServer')) return;
-  // if true, returns... escaping from function and preventing .setItem() execution
-  // TODO: code to store token in db
-  localStorage.setItem('tokenSentToServer', '1')
+	// if already in localStorage, just return
+	// if (localStorage.getItem('tokenSentToServer')) {
+	//   return localStorage.getItem('tokenSentToServer')
+	// };
+	// Same with less code..
+	if (localStorage.getItem('tokenSentToServer')) return;
+	// if true, returns... escaping from function and preventing .setItem() execution
+	// TODO: code to store token in db
+	localStorage.setItem('tokenSentToServer', '1');
 };
 
 /**
